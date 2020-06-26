@@ -31,6 +31,6 @@ def main():
                 localfile = '/tmp/%s' % filename
                 recordAudio(localfile)
                 upload(localfile, filename)
-                os.remove(filename)
+                os.remove(localfile)
 
 main()
