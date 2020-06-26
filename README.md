@@ -11,3 +11,9 @@ as root
 pip3 install python-dotenv
 pip3 install dropbox
 ```
+
+# Service
+copy file into
+```
+/lib/systemd/system/recorder.service
+```

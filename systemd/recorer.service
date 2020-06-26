@@ -1,0 +1,11 @@
+[Unit]
+Description=Recorder
+After=multi-user.target
+
+[Service]
+WorkingDirectory=/home/pi/audio-recorder
+ExecStart=/usr/bin/python3 /home/pi/audio-recorder/main.py
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
