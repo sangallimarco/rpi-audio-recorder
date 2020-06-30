@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-DURATION = '600'
+DURATION = '300'
 TOKEN = os.getenv("DROPBOX_TOKEN")
 DROPBOX_PATH = os.getenv("DROPBOX_PATH")
 AUDIO_CARD = os.getenv("AUDIO_CARD")
@@ -22,8 +22,8 @@ def upload(resource, filename):
 		print('uploaded')
 
 def recordAudio(filename):
-	arecord = Popen( ['arecord', '-f', 'S16_LE' ,'-c','1', '-r', '22050', '-t', 'raw', '-D', AUDIO_CARD, '-d', DURATION],  stdout=PIPE)
-	lame = Popen(['lame' ,'-r', '-s', '22.05', '-m', 'm', '-b', '64' ,'-', filename],  stdin=arecord.stdout, stdout=PIPE)
+	arecord = Popen( ['arecord', '-f', 'S16_LE' ,'-c','1', '-r', '44100', '-t', 'wav','-D', AUDIO_CARD, '-d', DURATION],  stdout=PIPE)
+	lame = Popen(['lame' ,'-r', '-f', '-s', '44.10', '-m', 'm', '--gain', '+12', '--highpass', '-b', '128' ,'-', filename],  stdin=arecord.stdout, stdout=PIPE)
 	arecord.stdout.close()
 	output = lame.communicate()[0] 
 
