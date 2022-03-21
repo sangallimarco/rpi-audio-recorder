@@ -18,8 +18,12 @@ def upload(resource, filename):
 	destinationfile = '%s/%s' % (DROPBOX_PATH, filename)
 	print(destinationfile)
 	with open(resource, 'rb') as f:
-		dbx.files_upload(f.read(), destinationfile)
-		print('uploaded')
+		try:
+                        dbx.files_upload(f.read(), destinationfile)
+			print('uploaded')
+                except:
+                        print('Destination Full')
+                        time.sleep(120)
 
 def recordAudio(filename):
 	arecord = Popen( ['arecord', '-f', 'S16_LE' ,'-c','1', '-r', '44100', '-t', 'wav','-D', AUDIO_CARD, '-d', DURATION],  stdout=PIPE)
